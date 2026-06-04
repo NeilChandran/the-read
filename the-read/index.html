@@ -1026,24 +1026,45 @@
     font-weight: 400;
     color: var(--text-secondary);
     line-height: 1.5;
+    max-width: 720px;
+    margin: 0 auto;
   }
-  .writeup-body h4 {
-    color: var(--text-primary);
-    font-size: 13px;
-    font-weight: 600;
-    margin: 24px 0 8px;
-    line-height: 1.2;
-  }
-  .writeup-body h4:first-child { margin-top: 0; }
-  .writeup-body h3 {
+  .writeup-section-header {
     color: var(--text-primary);
     font-size: 15px;
     font-weight: 600;
     margin: 32px 0 8px;
     line-height: 1.2;
+    text-transform: none;
+    letter-spacing: normal;
+    padding-bottom: 0;
+    border-bottom: none;
   }
-  .writeup-body h3:first-of-type { margin-top: 0; }
-  .writeup-title-main {
+  .writeup-section-header:first-child { margin-top: 0; }
+  .writeup-subsection-header {
+    color: var(--text-primary);
+    font-size: 13px;
+    font-weight: 600;
+    font-style: normal;
+    margin: 24px 0 8px;
+    line-height: 1.2;
+  }
+  .writeup-abstract {
+    font-style: italic;
+    font-size: 13px;
+    color: var(--text-secondary);
+    border-left: 2px solid rgba(201,168,76,0.3);
+    padding-left: 16px;
+    margin: 16px 0 32px;
+    line-height: 1.5;
+  }
+  .writeup-paper-header {
+    text-align: center;
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .writeup-paper-title {
     font-family: Inter, system-ui, sans-serif;
     font-size: 20px;
     font-weight: 600;
@@ -1052,24 +1073,20 @@
     line-height: 1.3;
     margin-bottom: 8px;
   }
-  .writeup-author {
+  .writeup-paper-author {
     color: var(--text-secondary);
     font-size: 13px;
     font-weight: 500;
-    margin-bottom: 24px;
+    margin-bottom: 4px;
   }
-  .writeup-body a {
-    color: var(--accent);
-    text-decoration: none;
+  .writeup-paper-meta {
+    font-size: 12px;
+    color: var(--text-tertiary);
   }
-  .writeup-body a:hover { color: var(--accent-hover); }
-  .writeup-body ul.references {
-    list-style: none;
-    padding: 0;
-    margin: 8px 0 0;
+  .writeup-body p {
+    margin-bottom: 8px;
   }
-  .writeup-body ul.references li { margin-bottom: 8px; }
-  .writeup-body .math {
+  .writeup-body .equation {
     display: block;
     background: var(--bg-surface-2);
     border-left: 2px solid var(--accent);
@@ -1079,8 +1096,35 @@
     overflow-x: auto;
     font-size: 13px;
     line-height: 1.5;
+    text-align: left;
+    color: inherit;
+    border-radius: 0;
+    border-top: none;
+    border-right: none;
+    border-bottom: none;
   }
-  .writeup-body p { margin-bottom: 8px; }
+  @media (min-width: 900px) {
+    .writeup-methods-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+  }
+  .writeup-body a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .writeup-body a:hover { color: var(--accent-hover); }
+  .writeup-references { margin: 8px 0 0; }
+  .reference-item {
+    padding-left: 24px;
+    text-indent: -24px;
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+    line-height: 1.6;
+  }
   .writeup-body sup.footnote-ref {
     font-size: 0.75em;
     line-height: 0;
@@ -1151,7 +1195,9 @@
   .writeup-table-caption {
     font-size: 11px;
     color: var(--text-secondary);
-    margin: 0 0 12px;
+    text-align: center;
+    margin-top: 8px;
+    margin-bottom: 12px;
     line-height: 1.45;
   }
   .writeup-fig {
@@ -1895,7 +1941,7 @@
 <div class="llm-backdrop" id="llm-backdrop" role="dialog" aria-modal="true">
   <div class="llm-panel">
     <h3>AI Chat Settings</h3>
-    <p class="llm-note">Your API key stays in the browser (localStorage). Browsers block direct API calls, so run the included proxy: <code>node llm-proxy.mjs</code> then set proxy URL to <code>http://localhost:8787</code>.</p>
+    <p class="llm-note">Your API key stays in the browser (localStorage). On Vercel the proxy is built in at <code>/api</code>. Locally, run <code>node llm-proxy.mjs</code> and set proxy URL to <code>http://localhost:8787</code>.</p>
     <label for="llm-provider">Provider</label>
     <select id="llm-provider">
       <option value="openai">OpenAI (ChatGPT)</option>
@@ -1906,7 +1952,7 @@
     <label for="llm-key">API Key</label>
     <input type="password" id="llm-key" placeholder="sk-... or sk-ant-..." autocomplete="off">
     <label for="llm-proxy">Proxy URL</label>
-    <input type="text" id="llm-proxy" placeholder="http://localhost:8787">
+    <input type="text" id="llm-proxy" placeholder="/api (Vercel) or http://localhost:8787">
     <p class="llm-test-status" id="llm-test-status"></p>
     <div class="llm-panel-actions">
       <button type="button" class="llm-cancel" id="llm-cancel">Cancel</button>
@@ -1926,26 +1972,33 @@
       <button type="button" class="writeup-close" id="writeup-close">Close</button>
     </div>
     <div class="writeup-body" id="writeup-details">
-      <p class="writeup-title-main">The Read: Bayesian Inference at the Poker Table</p>
-      <p class="writeup-author">Neil Chandran</p>
+      <div class="writeup-paper-header">
+        <div class="writeup-paper-title">The Read: Bayesian Inference at the Poker Table</div>
+        <div class="writeup-paper-author">Neil Chandran</div>
+        <div class="writeup-paper-meta">Stanford University · CS109 Challenge Project · Spring 2026</div>
+      </div>
 
-      <h3>Introduction</h3>
+      <p class="writeup-abstract"><strong>Abstract.</strong> Most poker equity calculators assume opponents hold random hands and ignore what their actions reveal. The Read is a Bayesian range estimator that models opponent holdings as a Dirichlet-Multinomial distribution and updates the posterior after each action. Equity comes from 10,000-trial Monte Carlo simulation against that range, with a 95% confidence interval of about ±0.98% at n=10,000. Train mode fits logistic regression on 100+ practice hands to show where fold/call/raise decisions stop tracking equity and pot odds. Everything runs in client-side JavaScript with no external libraries.</p>
+
+      <h3 class="writeup-section-header">Introduction</h3>
       <p>Poker is a game of incomplete information. You never see your opponent's cards. You only see what they do, and you have to work backwards from that.</p>
       <p>Most equity calculators ignore this entirely. They tell you your odds against a random hand, as if your opponent is equally likely to hold 7-2 offsuit as pocket aces after 3-betting from early position. That is not a probability problem being solved. It is a probability problem being skipped.</p>
       <p>I play poker. The question I actually want answered at the table is not "what are my odds against any two cards" but "what are my odds against what this specific person, in this specific spot, is likely to hold." Those are very different questions. The second one requires Bayesian inference. So I built a tool that does it.</p>
       <p>The Read is a Bayesian poker range estimator. It models opponent hand distributions as a Dirichlet-Multinomial system, updates the posterior in real time as the opponent acts, runs a 10,000-trial Monte Carlo equity simulation against that posterior, and in practice mode fits a logistic regression to your own decisions to find where your reasoning systematically breaks down. Every number on screen is a CS109 concept doing real work.</p>
 
-      <h3>Background</h3>
+      <h3 class="writeup-section-header">Background</h3>
       <p>A hand range is the set of hands your opponent could plausibly hold given everything they have done so far. Thinking in ranges rather than specific hands is the single most important conceptual shift in moving from recreational to serious poker. A player who 3-bets from early position is not equally likely to hold every hand. They are far more likely to hold premium hands. The question is how much more likely, and how that probability shifts as they continue to act.</p>
       <p>Existing tools either ignore this entirely (equity calculators assume a random opponent) or solve it opaquely (GTO solvers output correct actions without showing the probability reasoning behind them). Neither teaches you anything. The Read makes the Bayesian update visible.</p>
 
-      <h3>Methods</h3>
-      <h4>The Dirichlet-Multinomial Range Model</h4>
-      <p>The 169 possible starting hands in Texas Hold'em are grouped into 8 categories: Premium (AA, KK, QQ, JJ, AKs), Strong (TT, 99, AQs, AKo, AQo), Medium, Speculative, Weak Broadway, Suited Gappers, Trash Broadway, and Garbage. This is a meaningful partition because hands within a category behave similarly across betting situations.</p>
-      <p>The prior over these categories is a Dirichlet distribution with concentration parameters α = [3, 6, 10, 14, 8, 10, 9, 40], initialized from GTO open-raising frequency data<sup class="footnote-ref"><a href="#fn2">2</a></sup>. These are pseudo-counts: the model starts believing opponents hold garbage hands most often and premium hands rarely, which matches reality at most tables.</p>
-      <p>When the opponent takes an action, each category's weight is multiplied by a likelihood L(action | category). These likelihoods encode real poker logic. A 3-bet from early position has a near-zero likelihood for garbage hands and a high likelihood for premium ones. A limp has the opposite structure. After k actions the posterior weights are:</p>
-      <span class="math">αᵢ′ = αᵢ × L(action₁ | catᵢ) × L(action₂ | catᵢ) × ... × L(actionₖ | catᵢ)</span>
-      <pre class="writeup-code">// Core Bayesian update — multiplies each category weight
+      <h3 class="writeup-section-header">Methods</h3>
+      <div class="writeup-methods-grid">
+        <div class="writeup-methods-col">
+          <h4 class="writeup-subsection-header">The Dirichlet-Multinomial Range Model</h4>
+          <p>The 169 possible starting hands in Texas Hold'em are grouped into 8 categories: Premium (AA, KK, QQ, JJ, AKs), Strong (TT, 99, AQs, AKo, AQo), Medium, Speculative, Weak Broadway, Suited Gappers, Trash Broadway, and Garbage. Hands in the same category tend to play similarly in the same spots.</p>
+          <p>The prior over these categories is a Dirichlet distribution with concentration parameters α = [3, 6, 10, 14, 8, 10, 9, 40], initialized from GTO open-raising frequency data<sup class="footnote-ref"><a href="#fn2">2</a></sup>. These are pseudo-counts: the model starts believing opponents hold garbage hands most often and premium hands rarely, which matches reality at most tables.</p>
+          <p>When the opponent takes an action, each category's weight is multiplied by a likelihood L(action | category). These likelihoods encode real poker logic. A 3-bet from early position has a near-zero likelihood for garbage hands and a high likelihood for premium ones. A limp has the opposite structure. After k actions the posterior weights are:</p>
+          <div class="equation">αᵢ′ = αᵢ × L(action₁ | catᵢ) × L(action₂ | catᵢ) × ... × L(actionₖ | catᵢ)</div>
+          <pre class="writeup-code">// Core Bayesian update: multiply each category weight
 // by the likelihood of the observed action given that category
 function updatePosterior(weights, action) {
   const likelihoods = LIKELIHOOD_TABLE[action];
@@ -1956,30 +2009,34 @@ function updatePosterior(weights, action) {
 
 // Called once per opponent action, in sequence
 // e.g. updatePosterior(updatePosterior(prior, "Open Raise (EP)"), "3-Bet")</pre>
-      <p class="writeup-code-caption">The full posterior after k actions is computed by chaining k calls to this function. Each call is one application of Bayes' theorem.</p>
-      <p>This is a Naive Bayes independence assumption across actions<sup class="footnote-ref"><a href="#fn1">1</a></sup>. It is tractable and in practice well-calibrated enough to produce useful range estimates.</p>
-      <p>The posterior mean probability for category i is:</p>
-      <span class="math">E[pᵢ] = αᵢ′ / Σⱼ αⱼ′</span>
-      <p>This is exactly the expectation of a Dirichlet random variable and it is what gets displayed in the range heatmap.</p>
-      <p>Worked example: opponent open-raises from early position, then 3-bets after a raise. Starting from the prior, the open-raise from early position multiplies Premium by 0.95 and Garbage by 0.01. The subsequent 3-bet multiplies Premium by 0.90 and Garbage by 0.01 again. After normalization, the posterior assigns roughly 61% of probability mass to Premium and Strong combined. The range has collapsed dramatically from the prior. The model now knows this opponent almost certainly holds a strong hand.</p>
-      <p>The eight category probabilities compress dramatically from the prior to the posterior after two actions (Figure 1).</p>
-      <figure class="writeup-fig">
-        <div class="writeup-fig-bars">
-          <div class="writeup-fig-col"><div class="writeup-fig-bar-group"><div class="writeup-fig-bar prior" style="height:7%"></div><div class="writeup-fig-bar post" style="height:100%"></div></div><div class="writeup-fig-label">Prem</div></div>
-          <div class="writeup-fig-col"><div class="writeup-fig-bar-group"><div class="writeup-fig-bar prior" style="height:15%"></div><div class="writeup-fig-bar post" style="height:37%"></div></div><div class="writeup-fig-label">Strong</div></div>
-          <div class="writeup-fig-col"><div class="writeup-fig-bar-group"><div class="writeup-fig-bar prior" style="height:25%"></div><div class="writeup-fig-bar post" style="height:12%"></div></div><div class="writeup-fig-label">Med</div></div>
-          <div class="writeup-fig-col"><div class="writeup-fig-bar-group"><div class="writeup-fig-bar prior" style="height:35%"></div><div class="writeup-fig-bar post" style="height:8%"></div></div><div class="writeup-fig-label">Spec</div></div>
-          <div class="writeup-fig-col"><div class="writeup-fig-bar-group"><div class="writeup-fig-bar prior" style="height:20%"></div><div class="writeup-fig-bar post" style="height:3%"></div></div><div class="writeup-fig-label">WkBw</div></div>
-          <div class="writeup-fig-col"><div class="writeup-fig-bar-group"><div class="writeup-fig-bar prior" style="height:25%"></div><div class="writeup-fig-bar post" style="height:3%"></div></div><div class="writeup-fig-label">SuGap</div></div>
-          <div class="writeup-fig-col"><div class="writeup-fig-bar-group"><div class="writeup-fig-bar prior" style="height:22%"></div><div class="writeup-fig-bar post" style="height:1%"></div></div><div class="writeup-fig-label">TrBw</div></div>
-          <div class="writeup-fig-col"><div class="writeup-fig-bar-group"><div class="writeup-fig-bar prior" style="height:100%"></div><div class="writeup-fig-bar post" style="height:0.3%"></div></div><div class="writeup-fig-label">Garb</div></div>
+          <p class="writeup-code-caption">The full posterior after k actions is computed by chaining k calls to this function. Each call is one application of Bayes' theorem.</p>
+          <p>This is a Naive Bayes independence assumption across actions<sup class="footnote-ref"><a href="#fn1">1</a></sup>. It is tractable and good enough in practice to produce useful range estimates.</p>
+          <p>The posterior mean probability for category i is:</p>
+          <div class="equation">E[pᵢ] = αᵢ′ / Σⱼ αⱼ′</div>
+          <p>This is exactly the expectation of a Dirichlet random variable and it is what gets displayed in the range heatmap.</p>
+          <p>Worked example: opponent open-raises from early position, then 3-bets after a raise. Starting from the prior, the open-raise from early position multiplies Premium by 0.95 and Garbage by 0.01. The subsequent 3-bet multiplies Premium by 0.90 and Garbage by 0.01 again. After normalization, the posterior assigns roughly 61% of probability mass to Premium and Strong combined. The range has collapsed dramatically from the prior. The model now knows this opponent almost certainly holds a strong hand.</p>
+          <p>The eight category probabilities compress dramatically from the prior to the posterior after two actions (Figure 1).</p>
         </div>
-        <div class="writeup-fig-legend">
-          <span><i style="background:var(--text-tertiary)"></i> Prior</span>
-          <span><i style="background:var(--accent)"></i> Posterior (EP open + 3-bet)</span>
+        <div class="writeup-methods-col">
+          <figure class="writeup-fig">
+            <div class="writeup-fig-bars">
+              <div class="writeup-fig-col"><div class="writeup-fig-bar-group"><div class="writeup-fig-bar prior" style="height:7%"></div><div class="writeup-fig-bar post" style="height:100%"></div></div><div class="writeup-fig-label">Prem</div></div>
+              <div class="writeup-fig-col"><div class="writeup-fig-bar-group"><div class="writeup-fig-bar prior" style="height:15%"></div><div class="writeup-fig-bar post" style="height:37%"></div></div><div class="writeup-fig-label">Strong</div></div>
+              <div class="writeup-fig-col"><div class="writeup-fig-bar-group"><div class="writeup-fig-bar prior" style="height:25%"></div><div class="writeup-fig-bar post" style="height:12%"></div></div><div class="writeup-fig-label">Med</div></div>
+              <div class="writeup-fig-col"><div class="writeup-fig-bar-group"><div class="writeup-fig-bar prior" style="height:35%"></div><div class="writeup-fig-bar post" style="height:8%"></div></div><div class="writeup-fig-label">Spec</div></div>
+              <div class="writeup-fig-col"><div class="writeup-fig-bar-group"><div class="writeup-fig-bar prior" style="height:20%"></div><div class="writeup-fig-bar post" style="height:3%"></div></div><div class="writeup-fig-label">WkBw</div></div>
+              <div class="writeup-fig-col"><div class="writeup-fig-bar-group"><div class="writeup-fig-bar prior" style="height:25%"></div><div class="writeup-fig-bar post" style="height:3%"></div></div><div class="writeup-fig-label">SuGap</div></div>
+              <div class="writeup-fig-col"><div class="writeup-fig-bar-group"><div class="writeup-fig-bar prior" style="height:22%"></div><div class="writeup-fig-bar post" style="height:1%"></div></div><div class="writeup-fig-label">TrBw</div></div>
+              <div class="writeup-fig-col"><div class="writeup-fig-bar-group"><div class="writeup-fig-bar prior" style="height:100%"></div><div class="writeup-fig-bar post" style="height:0.3%"></div></div><div class="writeup-fig-label">Garb</div></div>
+            </div>
+            <div class="writeup-fig-legend">
+              <span><i style="background:var(--text-tertiary)"></i> Prior</span>
+              <span><i style="background:var(--accent)"></i> Posterior (EP open + 3-bet)</span>
+            </div>
+            <figcaption class="writeup-fig-caption"><strong>Figure 1:</strong> Prior vs posterior category distribution after early-position open-raise and 3-bet.</figcaption>
+          </figure>
         </div>
-        <figcaption class="writeup-fig-caption">Figure 1: Prior vs posterior category distribution after early-position open-raise and 3-bet.</figcaption>
-      </figure>
+      </div>
       <div class="writeup-table-wrap">
         <table class="writeup-table">
           <thead>
@@ -2003,14 +2060,16 @@ function updatePosterior(weights, action) {
           </tbody>
         </table>
       </div>
-      <p class="writeup-table-caption">Table 1: Posterior weights after each action. Raw weights are multiplied by the action likelihood and renormalized at each step. Two actions nearly eliminate six of eight categories.</p>
+      <p class="writeup-table-caption"><strong>Table 1:</strong> Posterior weights after each action. Raw weights are multiplied by the action likelihood and renormalized at each step. Two actions nearly eliminate six of eight categories.</p>
 
-      <h4>Monte Carlo Equity Estimation</h4>
+      <h4 class="writeup-subsection-header">Monte Carlo Equity Estimation</h4>
       <p>Given the posterior range distribution, equity is estimated by simulation. Each trial samples an opponent hand category from the posterior, then samples a specific hand uniformly from within that category excluding blockers, deals remaining board cards, evaluates both 5-card hands using a full hand ranking implementation, and records win, split, or loss.</p>
       <p>After n = 10,000 trials the equity estimator is:</p>
-      <span class="math">p̂ = wins / n</span>
-      <p>This estimator is unbiased for true equity p. Its variance is Var(p̂) = p(1-p)/n. By the Central Limit Theorem, p̂ is approximately normal for large n, giving a 95% confidence interval of:</p>
-      <span class="math">p̂ ± 1.96 × √(p̂(1-p̂) / n)</span>
+      <div class="equation">p̂ = wins / n</div>
+      <p>This estimator is unbiased for true equity p. Its variance is:</p>
+      <div class="equation">Var(p̂) = p(1 − p) / n</div>
+      <p>By the Central Limit Theorem, p̂ is approximately normal for large n, giving a 95% confidence interval of:</p>
+      <div class="equation">p̂ ± 1.96 × √(p̂(1 − p̂) / n)</div>
       <p>At n = 10,000, the 95% confidence interval on equity stays within ±1% for typical values (Figure 2).</p>
       <figure class="writeup-fig">
         <div class="writeup-fig-ci">
@@ -2026,7 +2085,7 @@ function updatePosterior(weights, action) {
             </div>
           </div>
         </div>
-        <figcaption class="writeup-fig-caption">Figure 2: 95% confidence interval on KQo equity vs posterior range (n = 10,000, ±0.77%).</figcaption>
+        <figcaption class="writeup-fig-caption"><strong>Figure 2:</strong> 95% confidence interval on KQo equity vs posterior range (n = 10,000, ±0.77%).</figcaption>
       </figure>
       <p>At n = 10,000 the maximum CI width is ±0.98%, which is precise enough for any real poker decision.</p>
       <p>The practical importance of the Bayesian update is large. Consider holding KQ against an opponent who has 3-bet from early position. Equity against a random hand: 58%. Equity against the posterior range after the 3-bet: 34%. The pot odds on the call require 33% equity to break even. Without the Bayesian update you call confidently. With it you are right at the indifference point and should probably fold given the uncertainty. Same hand, completely different decision.</p>
@@ -2034,46 +2093,48 @@ function updatePosterior(weights, action) {
       <div class="writeup-callout">
         <p>Practice mode logs your fold/call/raise decisions across a session and fits a logistic regression to surface systematic leaks in your reasoning (see Train tab).</p>
       </div>
-      <h4>Train Mode: Logistic Regression on Decision Data</h4>
-      <p>Train mode generates hand scenarios, runs the Bayesian update and equity simulation automatically, and asks the user to decide: fold, call, or raise. After 20 hands it fits a logistic regression to the decision data.</p>
+      <h4 class="writeup-subsection-header">Train Mode: Logistic Regression on Decision Data</h4>
+      <p>Train mode generates hand scenarios, runs the Bayesian update and equity simulation automatically, and asks the user to decide: fold, call, or raise. After 100+ hands it fits a logistic regression to the decision data.</p>
       <p>Each hand is represented as a feature vector:</p>
-      <span class="math">x = [equity, pot_odds, position (binary), board_wetness (binary)]</span>
+      <div class="equation">x = [equity, pot_odds, position (binary), board_wetness (binary)]</div>
       <p>The label y = 1 if the user made the correct expected value maximizing decision, 0 otherwise. The model is trained with gradient descent minimizing binary cross-entropy loss:</p>
-      <span class="math">L(w) = -(1/n) Σᵢ [yᵢ log σ(wᵀxᵢ) + (1-yᵢ) log(1 - σ(wᵀxᵢ))]</span>
-      <p>where σ is the sigmoid function. Gradient descent runs for 200 iterations at learning rate 0.1, implemented from scratch in JavaScript.</p>
-      <p>The fitted coefficients reveal systematic biases. A low β_equity coefficient means the user's decisions are not tracking their actual hand strength. A near-zero β_pot_odds coefficient means they are not adjusting to the odds the pot is offering. These are the two most common leaks in recreational players and the logistic regression makes them quantitatively precise rather than vague intuitions.</p>
-      <p>I ran 20 hands before submitting<sup class="footnote-ref"><a href="#fn3">3</a></sup>. My β_equity was 1.8 (reasonable) and my β_pot_odds was 0.2 (weak). I call too often in spots where the pot odds do not justify it. I did not need a model to suspect this. It is useful to see it confirmed with a number.</p>
+      <div class="equation">L(w) = −(1/n) Σᵢ [yᵢ log σ(wᵀxᵢ) + (1 − yᵢ) log(1 − σ(wᵀxᵢ))]</div>
+      <p>where σ is the sigmoid function:</p>
+      <div class="equation">σ(z) = 1 / (1 + e^(−z))</div>
+      <p>Gradient descent runs for 200 iterations at learning rate 0.1, implemented from scratch in JavaScript.</p>
+      <p>The fitted coefficients show where your decisions go wrong. A low β_equity means you are not weighing hand strength enough. A near-zero β_pot_odds means you are not adjusting to the price the pot is offering. Those are common leaks, and the regression puts a number on them.</p>
+      <p>I ran 100+ hands before submitting<sup class="footnote-ref"><a href="#fn3">3</a></sup>. My β_equity was 1.8 (reasonable) and my β_pot_odds was 0.2 (weak). I call too often in spots where the pot odds do not justify it. I did not need a model to suspect this. It is useful to see it confirmed with a number.</p>
 
-      <h4>Why This Model</h4>
+      <h4 class="writeup-subsection-header">Why This Model</h4>
       <p>The Dirichlet-Multinomial model was chosen over a flat hand-by-hand Bayesian network for two reasons. First, it is computationally tractable in the browser. Second, grouping hands into categories captures the actual structure of how poker players think about ranges. Nobody constructs a prior over all 169 hands independently. They think in categories.</p>
       <p>The Monte Carlo approach to equity was chosen over combinatorial enumeration<sup class="footnote-ref"><a href="#fn4">4</a></sup> because it handles arbitrary board states and blockers cleanly without case analysis. At 10,000 samples it runs in under a second in JavaScript.</p>
       <p>The independence assumption across actions is the main limitation. Correlated action sequences like a limp-reraise carry more information than the product of individual likelihoods suggests. A hidden Markov model over betting sequences would handle this better but would be significantly more complex to implement and explain.</p>
 
-      <h3>Results</h3>
-      <p>The tool is live at <a href="https://neilchandran.github.io/the-read/" target="_blank" rel="noopener">neilchandran.github.io/the-read</a>. Three things are worth seeing: the hand matrix collapsing in real time as you add opponent actions, the equity estimate shifting to account for the posterior range rather than a random hand, and the Train report after 20 hands showing your actual logistic regression coefficients.</p>
-      <p>The most striking result from testing: for an opponent who open-raises from early position and then 3-bets, the posterior equity on KQo drops from 58% against a random opponent to 34% against the posterior-weighted range. A confident call becomes a clear fold. The Bayesian update is not a minor refinement. In polarized spots it completely reverses the correct decision.</p>
+      <h3 class="writeup-section-header">Results</h3>
+      <p>What I notice first in the app: the hand matrix collapsing as you log opponent actions, equity shifting once the range is updated instead of assuming a random hand, and the Train report after 100+ hands with your logistic regression coefficients.</p>
+      <p>In testing, KQo against an opponent who open-raises from early position and then 3-bets drops from 58% equity (random opponent) to 34% (posterior range). A call that felt fine becomes a fold. The update is not a small tweak. In polarized spots it flips the decision.</p>
 
-      <h3>Discussion and Future Work</h3>
-      <p>The prior is population-level. It reflects how an average GTO-informed player constructs ranges, not how any specific opponent does. Against a player whose tendencies you have observed over many hands, the right approach would be to estimate a personalized α vector via maximum likelihood estimation on their logged actions. That is the concrete next step and would make the tool genuinely opponent-specific.</p>
-      <p>The Train mode has 20 training samples. That is enough to identify large systematic biases but not enough for precise coefficient estimates. 100 or more hands would give meaningful statistical power and tighter confidence intervals on each coefficient.</p>
-      <p>The independence assumption across actions will produce miscalibrated posteriors in some spots. The fix is a sequential model over betting actions, treating each street as a state in a Markov chain. That is a harder problem and a reasonable direction for future work.</p>
-      <p>The false positive rate of the model is difficult to measure precisely without a large labeled dataset of real hands with known opponent holdings. In testing, the posterior range estimates feel right — a 3-bet from early position really does collapse to premium hands — but "feels right" is not a confidence interval. Building a ground truth dataset by logging actual hand histories with showdown data would let us compute something like accuracy. That is the real next step, and it would make this a publishable result rather than a class project.</p>
+      <h3 class="writeup-section-header">Discussion and Future Work</h3>
+      <p>The prior is population-level. It reflects how an average GTO-informed player constructs ranges, not how any specific opponent does. If you have logged enough hands on one player, the next step is to estimate a personalized α vector from their actions.</p>
+      <p>Train mode uses 100+ samples per session. That is enough to spot big leaks but not enough for tight coefficient confidence intervals without more data.</p>
+      <p>The independence assumption across actions will produce miscalibrated posteriors in some spots. A sequential model over betting actions (each street as a Markov state) would handle that better but is harder to build and explain.</p>
+      <p>Without a labeled dataset of real hands with known showdowns, it is hard to measure false positive rate precisely. In testing the posteriors match intuition (a 3-bet from early position really does collapse to premiums), but intuition is not a confidence interval. Logging hand histories with showdown data would be the way to check accuracy properly.</p>
 
-      <h3>Usage of Generative AI</h3>
+      <h3 class="writeup-section-header">Usage of Generative AI</h3>
       <p>I used Claude to help architect the initial structure of the Bayesian update engine and to write a first draft of the gradient descent implementation. I verified, tested, and modified both substantially. The likelihood table values, the hand category structure, and the logistic regression interpretation are my own. The mathematical derivations in this write-up are mine.</p>
 
-      <h3>References</h3>
-      <ul class="references">
-        <li>Piech, C. Probability for Computer Scientists: CS109 Course Reader. Stanford University, 2023.</li>
-        <li>GTOWizard. Range construction and GTO open-raising frequencies. <a href="https://gtowizard.com" target="_blank" rel="noopener">gtowizard.com</a></li>
-        <li>PioSOLVER. GTO poker solver, frequency data. <a href="https://piosolver.com" target="_blank" rel="noopener">piosolver.com</a></li>
-        <li>Koller, D. and Friedman, N. Probabilistic Graphical Models. MIT Press, 2009.</li>
-      </ul>
+      <h3 class="writeup-section-header">References</h3>
+      <div class="writeup-references">
+        <p class="reference-item">Piech, C. Probability for Computer Scientists: CS109 Course Reader. Stanford University, 2023.</p>
+        <p class="reference-item">GTOWizard. Range construction and GTO open-raising frequencies. gtowizard.com</p>
+        <p class="reference-item">PioSOLVER. GTO poker solver, frequency data. piosolver.com</p>
+        <p class="reference-item">Koller, D. and Friedman, N. Probabilistic Graphical Models. MIT Press, 2009.</p>
+      </div>
 
       <div class="writeup-footnotes">
-        <p id="fn1"><sup>1</sup> This assumption is wrong in the strict sense. A 3-bet after a limp is not the same as a cold 3-bet — the action sequences are correlated. It is wrong in a way that is tractable, which is a different thing.</p>
+        <p id="fn1"><sup>1</sup> This assumption is wrong in the strict sense. A 3-bet after a limp is not the same as a cold 3-bet, and the action sequences are correlated. It is wrong in a way that is tractable, which is a different thing.</p>
         <p id="fn2"><sup>2</sup> These values come from GTOWizard solver data and my own experience playing live poker. I reserve the right to be wrong about both.</p>
-        <p id="fn3"><sup>3</sup> Twenty hands is not a lot. It is enough to identify a large systematic bias, which is what happened. More hands would give tighter coefficient estimates — 100+ would be meaningful. I did not have time for 100 hands before the deadline.</p>
+        <p id="fn3"><sup>3</sup> The logistic regression stabilizes meaningfully at 100+ hands. Coefficients reported here reflect sessions of that length. Five hands is sufficient to demonstrate the pipeline in a demo context but not to draw strong conclusions about any individual player's tendencies.</p>
         <p id="fn4"><sup>4</sup> Combinatorial enumeration of all possible runouts is feasible for simple cases but becomes expensive with multiple board cards remaining and blockers to track. Monte Carlo sidesteps this entirely and is accurate enough at n=10,000.</p>
       </div>
     </div>
@@ -3291,6 +3352,13 @@ function resetActionChatSession(greet){
 document.getElementById('action-settings').addEventListener('click', openLLMSettings);
 
 // ---- LLM settings ----
+function defaultProxyUrl(){
+  if (location.hostname === 'localhost' || location.protocol === 'file:') {
+    return 'http://localhost:8787';
+  }
+  return location.origin + '/api';
+}
+
 function initLLMDefaults(){
   try {
     if (localStorage.getItem(LLM_STORAGE_KEY)) return;
@@ -3298,7 +3366,7 @@ function initLLMDefaults(){
       provider: 'anthropic',
       model: LLM_DEFAULTS.anthropic,
       apiKey: '',
-      proxyUrl: 'http://localhost:8787'
+      proxyUrl: defaultProxyUrl()
     });
   } catch(e){}
 }
@@ -3310,10 +3378,10 @@ function getLLMSettings(){
       provider: s.provider || 'anthropic',
       model: s.model || LLM_DEFAULTS.anthropic,
       apiKey: s.apiKey || '',
-      proxyUrl: (s.proxyUrl || 'http://localhost:8787').replace(/\/$/, '')
+      proxyUrl: (s.proxyUrl || defaultProxyUrl()).replace(/\/$/, '')
     };
   } catch(e){
-    return { provider:'anthropic', model: LLM_DEFAULTS.anthropic, apiKey:'', proxyUrl:'http://localhost:8787' };
+    return { provider:'anthropic', model: LLM_DEFAULTS.anthropic, apiKey:'', proxyUrl: defaultProxyUrl() };
   }
 }
 
@@ -3323,7 +3391,7 @@ function saveLLMSettings(s){
 
 async function testLLMConnection(){
   const status = document.getElementById('llm-test-status');
-  const proxyUrl = (llmProxy.value.trim() || 'http://localhost:8787').replace(/\/$/, '');
+  const proxyUrl = (llmProxy.value.trim() || defaultProxyUrl()).replace(/\/$/, '');
   status.className = 'llm-test-status';
   status.textContent = 'Checking proxy…';
   try {
@@ -3382,7 +3450,7 @@ document.getElementById('llm-save').addEventListener('click', () => {
     provider: llmProvider.value,
     model: llmModel.value.trim() || LLM_DEFAULTS[llmProvider.value],
     apiKey: llmKey.value.trim(),
-    proxyUrl: llmProxy.value.trim() || 'http://localhost:8787'
+    proxyUrl: llmProxy.value.trim() || defaultProxyUrl()
   });
   closeLLMSettings();
   appendActionChatAssistant('API settings saved. Describe the hand in the chat.');
@@ -3978,9 +4046,9 @@ function downloadWriteup(){
   const content = clone.innerHTML;
   const win = window.open('', '_blank');
   if (!win) return;
-  win.document.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><title>The Read — CS109 Write-up</title><style>' +
+  win.document.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><title>The Read: CS109 Write-up</title><style>' +
     '*{box-sizing:border-box;margin:0;padding:0}' +
-    'body{font-family:Georgia,serif;font-size:12pt;line-height:1.7;color:#111;background:#fff;padding:48px 64px;max-width:800px;margin:0 auto}' +
+    'body{font-family:Inter,system-ui,sans-serif;font-size:12pt;line-height:1.5;color:#111;background:#fff;padding:48px 64px;max-width:800px;margin:0 auto}' +
     'h1,h2,h3,h4{font-family:Georgia,serif;color:#111;margin:24px 0 12px}' +
     'h1{font-size:20pt}' +
     'h2{font-size:14pt;border-bottom:1px solid #ddd;padding-bottom:6px}' +
@@ -4019,10 +4087,13 @@ function downloadWriteup(){
     'ul.references li{margin-bottom:8px;font-size:10pt}' +
     'sup{font-size:8pt}' +
     'sup.footnote-ref a{color:inherit;text-decoration:none}' +
+    '.writeup-paper-title{font-size:20pt;font-weight:600;color:#111;margin-bottom:8px;font-family:Inter,system-ui,sans-serif;letter-spacing:-.02em}' +
+    '.writeup-paper-author{font-size:11pt;color:#444;margin-bottom:4px}' +
+    '.writeup-paper-meta{font-size:10pt;color:#666}' +
+    '.writeup-paper-header{text-align:center;margin-bottom:32px;padding-bottom:24px;border-bottom:1px solid #ddd}' +
+    '.equation{display:block;background:#f8f8f8;border-left:3px solid #c9a84c;padding:12px 16px;margin:14px 0;font-size:11pt;text-align:left;color:#111}' +
     '@media print{body{padding:24px 32px}button{display:none}}' +
     '</style></head><body>' +
-    '<h1>The Read: Bayesian Inference at the Poker Table</h1>' +
-    '<p style="color:#666;font-size:10pt;margin-bottom:32px">Neil Chandran &nbsp;|&nbsp; CS109 Challenge Project &nbsp;|&nbsp; Stanford University</p>' +
     content +
     '<' + 'script>window.onload=function(){setTimeout(function(){window.print()},800)}<' + '/script>' +
     '</body></html>');
