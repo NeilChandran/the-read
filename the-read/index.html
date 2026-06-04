@@ -970,9 +970,9 @@
     background: var(--bg-surface);
     border: 1px solid var(--border);
     border-radius: 8px;
-    max-width: 720px;
+    max-width: 860px;
     width: 100%;
-    max-height: 80vh;
+    max-height: 85vh;
     overflow-y: auto;
     padding: 24px;
   }
@@ -1022,192 +1022,157 @@
   }
   .writeup-close:hover { color: var(--text-primary); }
   .writeup-body {
-    font-size: 13px;
-    font-weight: 400;
-    color: var(--text-secondary);
-    line-height: 1.5;
-    max-width: 720px;
-    margin: 0 auto;
+    padding: 0;
   }
-  .writeup-section-header {
-    color: var(--text-primary);
-    font-size: 15px;
-    font-weight: 600;
-    margin: 32px 0 8px;
-    line-height: 1.2;
+  #writeup-details .writeup-content {
+    background: white;
+    color: #111;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 12pt;
+    line-height: 1.7;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 48px;
+  }
+  #writeup-details .writeup-content h1 {
+    font-size: 18pt;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 4px;
+    color: #111;
+  }
+  #writeup-details .writeup-content .author {
+    text-align: center;
+    font-size: 11pt;
+    color: #111;
+    margin-bottom: 2px;
+  }
+  #writeup-details .writeup-content .date {
+    text-align: center;
+    font-size: 11pt;
+    color: #111;
+    margin-bottom: 12px;
+  }
+  #writeup-details .writeup-content .site-link {
+    text-align: center;
+    font-size: 11pt;
+    color: #111;
+    margin-bottom: 28px;
+  }
+  #writeup-details .writeup-content .site-link a {
+    color: #111;
+    text-decoration: none;
+  }
+  #writeup-details .writeup-content h2,
+  #writeup-details .writeup-content h3,
+  #writeup-details .writeup-content pre,
+  #writeup-details .writeup-content .pdf-block,
+  #writeup-details .writeup-content .chart-container,
+  #writeup-details .writeup-content table,
+  #writeup-details .writeup-content .equation {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  #writeup-details .writeup-content h2 {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+  #writeup-details .writeup-content h2 + p,
+  #writeup-details .writeup-content h3 + p {
+    break-before: avoid;
+    page-break-before: avoid;
+  }
+  #writeup-details .writeup-content h2 {
+    font-size: 12pt;
+    font-weight: bold;
+    margin: 24px 0 10px;
+    color: #111;
     text-transform: none;
     letter-spacing: normal;
-    padding-bottom: 0;
     border-bottom: none;
-  }
-  .writeup-section-header:first-child { margin-top: 0; }
-  .writeup-subsection-header {
-    color: var(--text-primary);
-    font-size: 13px;
-    font-weight: 600;
+    font-family: Georgia, serif;
     font-style: normal;
-    margin: 24px 0 8px;
-    line-height: 1.2;
   }
-  .writeup-abstract {
-    font-style: italic;
-    font-size: 13px;
-    color: var(--text-secondary);
-    border-left: 2px solid rgba(201,168,76,0.3);
-    padding-left: 16px;
-    margin: 16px 0 32px;
-    line-height: 1.5;
+  #writeup-details .writeup-content h3 {
+    font-size: 12pt;
+    font-weight: bold;
+    font-style: normal;
+    margin: 20px 0 8px;
+    color: #111;
+    font-family: Georgia, serif;
   }
-  .writeup-paper-header {
+  #writeup-details .writeup-content p {
+    margin-bottom: 12px;
+    color: #111;
+    font-size: 12pt;
+  }
+  #writeup-details .writeup-content .equation {
     text-align: center;
-    margin-bottom: 32px;
-    padding-bottom: 24px;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-  }
-  .writeup-paper-title {
-    font-family: Inter, system-ui, sans-serif;
-    font-size: 20px;
-    font-weight: 600;
-    letter-spacing: -0.02em;
-    color: var(--text-primary);
-    line-height: 1.3;
-    margin-bottom: 8px;
-  }
-  .writeup-paper-author {
-    color: var(--text-secondary);
-    font-size: 13px;
-    font-weight: 500;
-    margin-bottom: 4px;
-  }
-  .writeup-paper-meta {
-    font-size: 12px;
-    color: var(--text-tertiary);
-  }
-  .writeup-body p {
-    margin-bottom: 8px;
-  }
-  .writeup-body .equation {
-    display: block;
-    background: var(--bg-surface-2);
-    border-left: 2px solid var(--accent);
-    padding: 16px;
-    margin: 8px 0;
-    white-space: pre-wrap;
-    overflow-x: auto;
-    font-size: 13px;
-    line-height: 1.5;
-    text-align: left;
-    color: inherit;
+    font-family: 'Courier New', monospace;
+    font-size: 11pt;
+    color: #111;
+    margin: 16px 0;
+    padding: 0;
+    background: none;
+    border: none;
     border-radius: 0;
-    border-top: none;
-    border-right: none;
-    border-bottom: none;
   }
-  @media (min-width: 900px) {
-    .writeup-methods-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 32px;
-      align-items: start;
-    }
+  #writeup-details .writeup-content pre,
+  #writeup-details .writeup-content code {
+    font-family: 'Courier New', monospace;
+    font-size: 9pt;
+    background: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    padding: 12px 16px;
+    display: block;
+    margin: 16px 0;
+    white-space: pre-wrap;
+    color: #333;
   }
-  .writeup-body a {
-    color: var(--accent);
-    text-decoration: none;
-  }
-  .writeup-body a:hover { color: var(--accent-hover); }
-  .writeup-references { margin: 8px 0 0; }
-  .reference-item {
-    padding-left: 24px;
-    text-indent: -24px;
-    font-size: 12px;
-    color: var(--text-secondary);
-    margin-bottom: 8px;
-    line-height: 1.6;
-  }
-  .writeup-body sup.footnote-ref {
-    font-size: 0.75em;
-    line-height: 0;
-    vertical-align: super;
-  }
-  .writeup-body sup.footnote-ref a {
-    color: var(--text-secondary);
-    text-decoration: none;
-  }
-  .writeup-body sup.footnote-ref a:hover { color: var(--accent); }
-  .writeup-footnotes {
-    margin-top: 24px;
-    padding-top: 16px;
-    border-top: 1px solid var(--border);
-    font-size: 12px;
-    color: var(--text-secondary);
-    line-height: 1.55;
-  }
-  .writeup-footnotes p { margin-bottom: 10px; }
-  .writeup-footnotes sup { margin-right: 4px; }
-  .writeup-body .writeup-code {
-    background: #0c0c0c;
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 6px;
-    padding: 16px;
-    margin: 12px 0 4px;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 12px;
-    color: #c9a84c;
-    overflow-x: auto;
-    white-space: pre;
-    line-height: 1.55;
-  }
-  .writeup-code-caption {
-    font-size: 11px;
-    color: var(--text-secondary);
-    margin: 0 0 12px;
-    line-height: 1.45;
-  }
-  .writeup-table-wrap {
-    overflow-x: auto;
-    margin: 12px 0 4px;
-  }
-  .writeup-table {
+  #writeup-details .writeup-content table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 12px;
-    color: var(--text-primary);
+    margin: 20px 0;
+    font-size: 10pt;
+    font-family: Georgia, serif;
   }
-  .writeup-table th,
-  .writeup-table td {
-    border: 1px solid var(--border);
-    padding: 8px 10px;
+  #writeup-details .writeup-content th {
+    background: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 7px 10px;
+    text-align: left;
+    font-weight: bold;
+    font-size: 10pt;
+  }
+  #writeup-details .writeup-content td {
+    border: 1px solid #ccc;
+    padding: 6px 10px;
+    color: #111;
     text-align: right;
   }
-  .writeup-table th:first-child,
-  .writeup-table td:first-child { text-align: left; }
-  .writeup-table thead th {
-    background: var(--bg-surface-3);
-    font-size: 11px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    color: var(--text-secondary);
+  #writeup-details .writeup-content td:first-child,
+  #writeup-details .writeup-content th:first-child {
+    text-align: left;
   }
-  .writeup-table tbody tr:nth-child(odd) td { background: var(--bg-surface); }
-  .writeup-table tbody tr:nth-child(even) td { background: var(--bg-surface-2); }
-  .writeup-table-caption {
-    font-size: 11px;
-    color: var(--text-secondary);
+  #writeup-details .writeup-content tr:nth-child(even) td {
+    background: #fafafa;
+  }
+  #writeup-details .writeup-content .figure-caption {
+    font-size: 10pt;
+    color: #444;
+    font-style: italic;
     text-align: center;
-    margin-top: 8px;
-    margin-bottom: 12px;
-    line-height: 1.45;
+    margin-top: 6px;
+    font-family: Georgia, serif;
   }
-  .writeup-fig {
-    margin: 12px 0 4px;
+  #writeup-details .writeup-content .chart-container {
+    background: white;
+    border: 1px solid #ddd;
     padding: 16px;
-    background: var(--bg-surface-2);
-    border: 1px solid var(--border);
-    border-radius: 8px;
+    margin: 20px 0;
   }
-  .writeup-fig-bars {
+  #writeup-details .writeup-content .fig-bars {
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     gap: 6px;
@@ -1215,73 +1180,139 @@
     height: 140px;
     margin-bottom: 8px;
   }
-  .writeup-fig-col { display: flex; flex-direction: column; align-items: center; gap: 4px; height: 100%; justify-content: flex-end; }
-  .writeup-fig-bar-group { display: flex; gap: 2px; align-items: flex-end; height: 100px; width: 100%; justify-content: center; }
-  .writeup-fig-bar { width: 8px; border-radius: 2px 2px 0 0; min-height: 2px; }
-  .writeup-fig-bar.prior { background: var(--text-tertiary); }
-  .writeup-fig-bar.post { background: var(--accent); }
-  .writeup-fig-label { font-size: 9px; color: var(--text-secondary); text-align: center; line-height: 1.2; }
-  .writeup-fig-legend { display: flex; gap: 16px; justify-content: center; font-size: 11px; color: var(--text-secondary); margin-top: 8px; }
-  .writeup-fig-legend span { display: inline-flex; align-items: center; gap: 6px; }
-  .writeup-fig-legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; }
-  .writeup-fig-caption {
-    font-size: 11px;
-    color: var(--text-secondary);
-    text-align: center;
-    margin-top: 8px;
-    line-height: 1.45;
+  #writeup-details .writeup-content .fig-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    height: 100%;
+    justify-content: flex-end;
   }
-  .writeup-fig-ci {
+  #writeup-details .writeup-content .fig-bar-group {
+    display: flex;
+    gap: 2px;
+    align-items: flex-end;
+    height: 100px;
+    width: 100%;
+    justify-content: center;
+  }
+  #writeup-details .writeup-content .fig-bar {
+    width: 8px;
+    border-radius: 2px 2px 0 0;
+    min-height: 2px;
+  }
+  #writeup-details .writeup-content .fig-bar.prior { background: #888; }
+  #writeup-details .writeup-content .fig-bar.post { background: #2563eb; }
+  #writeup-details .writeup-content .fig-label {
+    font-size: 8pt;
+    color: #666;
+    text-align: center;
+    line-height: 1.2;
+  }
+  #writeup-details .writeup-content .fig-legend {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    font-size: 10pt;
+    color: #666;
+    margin-top: 8px;
+  }
+  #writeup-details .writeup-content .fig-legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  #writeup-details .writeup-content .fig-legend i {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+  }
+  #writeup-details .writeup-content .fig-ci {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
     padding: 20px 0;
   }
-  .writeup-fig-ci-bar {
+  #writeup-details .writeup-content .fig-ci-bar {
     position: relative;
     height: 8px;
     width: min(280px, 100%);
-    background: var(--border);
+    background: #ddd;
     border-radius: 4px;
   }
-  .writeup-fig-ci-range {
+  #writeup-details .writeup-content .fig-ci-range {
     position: absolute;
     left: 18%;
     width: 64%;
     height: 100%;
-    background: var(--accent-soft);
-    border: 1px solid var(--accent);
+    background: #dbeafe;
+    border: 1px solid #2563eb;
     border-radius: 4px;
   }
-  .writeup-fig-ci-point {
+  #writeup-details .writeup-content .fig-ci-point {
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     width: 12px;
     height: 12px;
-    background: var(--accent);
+    background: #2563eb;
     border-radius: 50%;
     border: 2px solid #fff;
   }
-  .writeup-fig-ci-labels {
+  #writeup-details .writeup-content .fig-ci-labels {
     display: flex;
     justify-content: space-between;
     width: min(280px, 100%);
-    font-size: 11px;
-    color: var(--text-secondary);
+    font-size: 10pt;
+    color: #666;
     margin-top: 6px;
   }
-  .writeup-callout {
-    background: var(--bg-surface-2);
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--gold);
-    border-radius: 6px;
-    padding: 12px 14px;
-    margin: 12px 0;
+  #writeup-details .writeup-content .callout {
+    border: 1px solid #ccc;
+    padding: 12px 16px;
+    background: #fafafa;
+    margin: 16px 0;
+    font-size: 11pt;
+    color: #333;
+    font-style: italic;
   }
-  .writeup-callout p { margin: 0; font-size: 13px; line-height: 1.5; }
+  #writeup-details .writeup-content .callout p {
+    margin: 0;
+    font-size: 11pt;
+    color: #333;
+  }
+  #writeup-details .writeup-content .reference-item {
+    padding-left: 24px;
+    text-indent: -24px;
+    font-size: 10.5pt;
+    color: #333;
+    margin-bottom: 8px;
+    font-family: Georgia, serif;
+    line-height: 1.6;
+  }
+  #writeup-details .writeup-content .pdf-spacer {
+    margin: 0;
+    padding: 0;
+    line-height: 1.7;
+    font-size: 12pt;
+  }
+  #writeup-details .writeup-content .code-caption {
+    font-size: 10pt;
+    color: #444;
+    font-style: italic;
+    margin: 0 0 12px;
+  }
+  #writeup-details .writeup-content .pdf-block .equation {
+    margin-bottom: 8px;
+  }
+  #writeup-details .writeup-content .pdf-block pre {
+    margin-top: 0;
+  }
+  #writeup-details .writeup-content .pdf-block .code-caption {
+    margin-top: 0;
+  }
 
   /* ---- Practice mode ---- */
   .practice-wrap { max-width: 720px; margin: 0 auto; padding: 24px 32px; }
@@ -1972,33 +2003,30 @@
       <button type="button" class="writeup-close" id="writeup-close">Close</button>
     </div>
     <div class="writeup-body" id="writeup-details">
-      <div class="writeup-paper-header">
-        <div class="writeup-paper-title">The Read: Bayesian Inference at the Poker Table</div>
-        <div class="writeup-paper-author">Neil Chandran</div>
-        <div class="writeup-paper-meta">Stanford University · CS109 Challenge Project · Spring 2026</div>
-      </div>
+      <div class="writeup-content">
+      <h1>The Read: Bayesian Inference at the Poker Table</h1>
+      <div class="author">Neil Chandran</div>
+      <div class="date">Spring 2026</div>
+      <p class="site-link">You can explore the website at <a href="https://www.theread.dev/">https://www.theread.dev/</a>. I suggest using the website at least once before reading this write-up.</p>
 
-      <p class="writeup-abstract"><strong>Abstract.</strong> Most poker equity calculators assume opponents hold random hands and ignore what their actions reveal. The Read is a Bayesian range estimator that models opponent holdings as a Dirichlet-Multinomial distribution and updates the posterior after each action. Equity comes from 10,000-trial Monte Carlo simulation against that range, with a 95% confidence interval of about ±0.98% at n=10,000. Train mode fits logistic regression on 100+ practice hands to show where fold/call/raise decisions stop tracking equity and pot odds. Everything runs in client-side JavaScript with no external libraries.</p>
-
-      <h3 class="writeup-section-header">Introduction</h3>
+      <p>Most poker equity calculators assume opponents hold random hands and ignore what their actions reveal. The Read is a Bayesian range estimator that models opponent holdings as a Dirichlet-Multinomial distribution and updates the posterior after each action. Equity comes from 10,000-trial Monte Carlo simulation against that range, with a 95% confidence interval of about ±0.98% at n=10,000. Train mode fits logistic regression on 100+ practice hands to show where fold/call/raise decisions stop tracking equity and pot odds. Everything runs in client-side JavaScript with no external libraries.</p>
       <p>Poker is a game of incomplete information. You never see your opponent's cards. You only see what they do, and you have to work backwards from that.</p>
       <p>Most equity calculators ignore this entirely. They tell you your odds against a random hand, as if your opponent is equally likely to hold 7-2 offsuit as pocket aces after 3-betting from early position. That is not a probability problem being solved. It is a probability problem being skipped.</p>
       <p>I play poker. The question I actually want answered at the table is not "what are my odds against any two cards" but "what are my odds against what this specific person, in this specific spot, is likely to hold." Those are very different questions. The second one requires Bayesian inference. So I built a tool that does it.</p>
       <p>The Read is a Bayesian poker range estimator. It models opponent hand distributions as a Dirichlet-Multinomial system, updates the posterior in real time as the opponent acts, runs a 10,000-trial Monte Carlo equity simulation against that posterior, and in practice mode fits a logistic regression to your own decisions to find where your reasoning systematically breaks down. Every number on screen is a CS109 concept doing real work.</p>
 
-      <h3 class="writeup-section-header">Background</h3>
+      <h2>Background</h2>
       <p>A hand range is the set of hands your opponent could plausibly hold given everything they have done so far. Thinking in ranges rather than specific hands is the single most important conceptual shift in moving from recreational to serious poker. A player who 3-bets from early position is not equally likely to hold every hand. They are far more likely to hold premium hands. The question is how much more likely, and how that probability shifts as they continue to act.</p>
       <p>Existing tools either ignore this entirely (equity calculators assume a random opponent) or solve it opaquely (GTO solvers output correct actions without showing the probability reasoning behind them). Neither teaches you anything. The Read makes the Bayesian update visible.</p>
 
-      <h3 class="writeup-section-header">Methods</h3>
-      <div class="writeup-methods-grid">
-        <div class="writeup-methods-col">
-          <h4 class="writeup-subsection-header">The Dirichlet-Multinomial Range Model</h4>
+      <h2>Methods</h2>
+      <h3>The Dirichlet-Multinomial Range Model</h3>
           <p>The 169 possible starting hands in Texas Hold'em are grouped into 8 categories: Premium (AA, KK, QQ, JJ, AKs), Strong (TT, 99, AQs, AKo, AQo), Medium, Speculative, Weak Broadway, Suited Gappers, Trash Broadway, and Garbage. Hands in the same category tend to play similarly in the same spots.</p>
-          <p>The prior over these categories is a Dirichlet distribution with concentration parameters α = [3, 6, 10, 14, 8, 10, 9, 40], initialized from GTO open-raising frequency data<sup class="footnote-ref"><a href="#fn2">2</a></sup>. These are pseudo-counts: the model starts believing opponents hold garbage hands most often and premium hands rarely, which matches reality at most tables.</p>
+          <p>The prior over these categories is a Dirichlet distribution with concentration parameters α = [3, 6, 10, 14, 8, 10, 9, 40], initialized from GTO open-raising frequency data. These are pseudo-counts: the model starts believing opponents hold garbage hands most often and premium hands rarely, which matches reality at most tables.</p>
           <p>When the opponent takes an action, each category's weight is multiplied by a likelihood L(action | category). These likelihoods encode real poker logic. A 3-bet from early position has a near-zero likelihood for garbage hands and a high likelihood for premium ones. A limp has the opposite structure. After k actions the posterior weights are:</p>
+          <div class="pdf-block">
           <div class="equation">αᵢ′ = αᵢ × L(action₁ | catᵢ) × L(action₂ | catᵢ) × ... × L(actionₖ | catᵢ)</div>
-          <pre class="writeup-code">// Core Bayesian update: multiply each category weight
+          <pre>// Core Bayesian update: multiply each category weight
 // by the likelihood of the observed action given that category
 function updatePosterior(weights, action) {
   const likelihoods = LIKELIHOOD_TABLE[action];
@@ -2009,36 +2037,34 @@ function updatePosterior(weights, action) {
 
 // Called once per opponent action, in sequence
 // e.g. updatePosterior(updatePosterior(prior, "Open Raise (EP)"), "3-Bet")</pre>
-          <p class="writeup-code-caption">The full posterior after k actions is computed by chaining k calls to this function. Each call is one application of Bayes' theorem.</p>
-          <p>This is a Naive Bayes independence assumption across actions<sup class="footnote-ref"><a href="#fn1">1</a></sup>. It is tractable and good enough in practice to produce useful range estimates.</p>
+          <p class="code-caption">The full posterior after k actions is computed by chaining k calls to this function. Each call is one application of Bayes' theorem.</p>
+          </div>
+          <p>This is a Naive Bayes independence assumption across actions. It is tractable and good enough in practice to produce useful range estimates.</p>
           <p>The posterior mean probability for category i is:</p>
           <div class="equation">E[pᵢ] = αᵢ′ / Σⱼ αⱼ′</div>
           <p>This is exactly the expectation of a Dirichlet random variable and it is what gets displayed in the range heatmap.</p>
           <p>Worked example: opponent open-raises from early position, then 3-bets after a raise. Starting from the prior, the open-raise from early position multiplies Premium by 0.95 and Garbage by 0.01. The subsequent 3-bet multiplies Premium by 0.90 and Garbage by 0.01 again. After normalization, the posterior assigns roughly 61% of probability mass to Premium and Strong combined. The range has collapsed dramatically from the prior. The model now knows this opponent almost certainly holds a strong hand.</p>
           <p>The eight category probabilities compress dramatically from the prior to the posterior after two actions (Figure 1).</p>
+
+      <div class="chart-container">
+        <div class="fig-bars">
+          <div class="fig-col"><div class="fig-bar-group"><div class="fig-bar prior" style="height:7%"></div><div class="fig-bar post" style="height:100%"></div></div><div class="fig-label">Prem</div></div>
+          <div class="fig-col"><div class="fig-bar-group"><div class="fig-bar prior" style="height:15%"></div><div class="fig-bar post" style="height:37%"></div></div><div class="fig-label">Strong</div></div>
+          <div class="fig-col"><div class="fig-bar-group"><div class="fig-bar prior" style="height:25%"></div><div class="fig-bar post" style="height:12%"></div></div><div class="fig-label">Med</div></div>
+          <div class="fig-col"><div class="fig-bar-group"><div class="fig-bar prior" style="height:35%"></div><div class="fig-bar post" style="height:8%"></div></div><div class="fig-label">Spec</div></div>
+          <div class="fig-col"><div class="fig-bar-group"><div class="fig-bar prior" style="height:20%"></div><div class="fig-bar post" style="height:3%"></div></div><div class="fig-label">WkBw</div></div>
+          <div class="fig-col"><div class="fig-bar-group"><div class="fig-bar prior" style="height:25%"></div><div class="fig-bar post" style="height:3%"></div></div><div class="fig-label">SuGap</div></div>
+          <div class="fig-col"><div class="fig-bar-group"><div class="fig-bar prior" style="height:22%"></div><div class="fig-bar post" style="height:1%"></div></div><div class="fig-label">TrBw</div></div>
+          <div class="fig-col"><div class="fig-bar-group"><div class="fig-bar prior" style="height:100%"></div><div class="fig-bar post" style="height:0.3%"></div></div><div class="fig-label">Garb</div></div>
         </div>
-        <div class="writeup-methods-col">
-          <figure class="writeup-fig">
-            <div class="writeup-fig-bars">
-              <div class="writeup-fig-col"><div class="writeup-fig-bar-group"><div class="writeup-fig-bar prior" style="height:7%"></div><div class="writeup-fig-bar post" style="height:100%"></div></div><div class="writeup-fig-label">Prem</div></div>
-              <div class="writeup-fig-col"><div class="writeup-fig-bar-group"><div class="writeup-fig-bar prior" style="height:15%"></div><div class="writeup-fig-bar post" style="height:37%"></div></div><div class="writeup-fig-label">Strong</div></div>
-              <div class="writeup-fig-col"><div class="writeup-fig-bar-group"><div class="writeup-fig-bar prior" style="height:25%"></div><div class="writeup-fig-bar post" style="height:12%"></div></div><div class="writeup-fig-label">Med</div></div>
-              <div class="writeup-fig-col"><div class="writeup-fig-bar-group"><div class="writeup-fig-bar prior" style="height:35%"></div><div class="writeup-fig-bar post" style="height:8%"></div></div><div class="writeup-fig-label">Spec</div></div>
-              <div class="writeup-fig-col"><div class="writeup-fig-bar-group"><div class="writeup-fig-bar prior" style="height:20%"></div><div class="writeup-fig-bar post" style="height:3%"></div></div><div class="writeup-fig-label">WkBw</div></div>
-              <div class="writeup-fig-col"><div class="writeup-fig-bar-group"><div class="writeup-fig-bar prior" style="height:25%"></div><div class="writeup-fig-bar post" style="height:3%"></div></div><div class="writeup-fig-label">SuGap</div></div>
-              <div class="writeup-fig-col"><div class="writeup-fig-bar-group"><div class="writeup-fig-bar prior" style="height:22%"></div><div class="writeup-fig-bar post" style="height:1%"></div></div><div class="writeup-fig-label">TrBw</div></div>
-              <div class="writeup-fig-col"><div class="writeup-fig-bar-group"><div class="writeup-fig-bar prior" style="height:100%"></div><div class="writeup-fig-bar post" style="height:0.3%"></div></div><div class="writeup-fig-label">Garb</div></div>
-            </div>
-            <div class="writeup-fig-legend">
-              <span><i style="background:var(--text-tertiary)"></i> Prior</span>
-              <span><i style="background:var(--accent)"></i> Posterior (EP open + 3-bet)</span>
-            </div>
-            <figcaption class="writeup-fig-caption"><strong>Figure 1:</strong> Prior vs posterior category distribution after early-position open-raise and 3-bet.</figcaption>
-          </figure>
+        <div class="fig-legend">
+          <span><i style="background:#888"></i> Prior</span>
+          <span><i style="background:#2563eb"></i> Posterior (EP open + 3-bet)</span>
         </div>
+        <div class="figure-caption"><strong>Figure 1:</strong> Prior vs posterior category distribution after early-position open-raise and 3-bet.</div>
       </div>
-      <div class="writeup-table-wrap">
-        <table class="writeup-table">
+
+      <table>
           <thead>
             <tr>
               <th>Category</th>
@@ -2059,10 +2085,9 @@ function updatePosterior(weights, action) {
             <tr><td>Garbage</td><td>40.0</td><td>0.40</td><td>0.004</td><td>0.2%</td></tr>
           </tbody>
         </table>
-      </div>
-      <p class="writeup-table-caption"><strong>Table 1:</strong> Posterior weights after each action. Raw weights are multiplied by the action likelihood and renormalized at each step. Two actions nearly eliminate six of eight categories.</p>
+      <div class="figure-caption"><strong>Table 1:</strong> Posterior weights after each action. Raw weights are multiplied by the action likelihood and renormalized at each step. Two actions nearly eliminate six of eight categories.</div>
 
-      <h4 class="writeup-subsection-header">Monte Carlo Equity Estimation</h4>
+      <h3>Monte Carlo Equity Estimation</h3>
       <p>Given the posterior range distribution, equity is estimated by simulation. Each trial samples an opponent hand category from the posterior, then samples a specific hand uniformly from within that category excluding blockers, deals remaining board cards, evaluates both 5-card hands using a full hand ranking implementation, and records win, split, or loss.</p>
       <p>After n = 10,000 trials the equity estimator is:</p>
       <div class="equation">p̂ = wins / n</div>
@@ -2071,29 +2096,29 @@ function updatePosterior(weights, action) {
       <p>By the Central Limit Theorem, p̂ is approximately normal for large n, giving a 95% confidence interval of:</p>
       <div class="equation">p̂ ± 1.96 × √(p̂(1 − p̂) / n)</div>
       <p>At n = 10,000, the 95% confidence interval on equity stays within ±1% for typical values (Figure 2).</p>
-      <figure class="writeup-fig">
-        <div class="writeup-fig-ci">
+      <div class="chart-container">
+        <div class="fig-ci">
           <div>
-            <div class="writeup-fig-ci-bar">
-              <div class="writeup-fig-ci-range"></div>
-              <div class="writeup-fig-ci-point"></div>
+            <div class="fig-ci-bar">
+              <div class="fig-ci-range"></div>
+              <div class="fig-ci-point"></div>
             </div>
-            <div class="writeup-fig-ci-labels">
+            <div class="fig-ci-labels">
               <span>33.4%</span>
               <span>p̂ = 34.0%</span>
               <span>34.6%</span>
             </div>
           </div>
         </div>
-        <figcaption class="writeup-fig-caption"><strong>Figure 2:</strong> 95% confidence interval on KQo equity vs posterior range (n = 10,000, ±0.77%).</figcaption>
-      </figure>
+        <div class="figure-caption"><strong>Figure 2:</strong> 95% confidence interval on KQo equity vs posterior range (n = 10,000, ±0.77%).</div>
+      </div>
       <p>At n = 10,000 the maximum CI width is ±0.98%, which is precise enough for any real poker decision.</p>
       <p>The practical importance of the Bayesian update is large. Consider holding KQ against an opponent who has 3-bet from early position. Equity against a random hand: 58%. Equity against the posterior range after the 3-bet: 34%. The pot odds on the call require 33% equity to break even. Without the Bayesian update you call confidently. With it you are right at the indifference point and should probably fold given the uncertainty. Same hand, completely different decision.</p>
 
-      <div class="writeup-callout">
+      <div class="callout">
         <p>Practice mode logs your fold/call/raise decisions across a session and fits a logistic regression to surface systematic leaks in your reasoning (see Train tab).</p>
       </div>
-      <h4 class="writeup-subsection-header">Train Mode: Logistic Regression on Decision Data</h4>
+      <h3>Train Mode: Logistic Regression on Decision Data</h3>
       <p>Train mode generates hand scenarios, runs the Bayesian update and equity simulation automatically, and asks the user to decide: fold, call, or raise. After 100+ hands it fits a logistic regression to the decision data.</p>
       <p>Each hand is represented as a feature vector:</p>
       <div class="equation">x = [equity, pot_odds, position (binary), board_wetness (binary)]</div>
@@ -2103,39 +2128,32 @@ function updatePosterior(weights, action) {
       <div class="equation">σ(z) = 1 / (1 + e^(−z))</div>
       <p>Gradient descent runs for 200 iterations at learning rate 0.1, implemented from scratch in JavaScript.</p>
       <p>The fitted coefficients show where your decisions go wrong. A low β_equity means you are not weighing hand strength enough. A near-zero β_pot_odds means you are not adjusting to the price the pot is offering. Those are common leaks, and the regression puts a number on them.</p>
-      <p>I ran 100+ hands before submitting<sup class="footnote-ref"><a href="#fn3">3</a></sup>. My β_equity was 1.8 (reasonable) and my β_pot_odds was 0.2 (weak). I call too often in spots where the pot odds do not justify it. I did not need a model to suspect this. It is useful to see it confirmed with a number.</p>
+      <p>I ran 100+ hands before submitting. My β_equity was 1.8 (reasonable) and my β_pot_odds was 0.2 (weak). I call too often in spots where the pot odds do not justify it. I did not need a model to suspect this. It is useful to see it confirmed with a number.</p>
 
-      <h4 class="writeup-subsection-header">Why This Model</h4>
+      <p class="pdf-spacer"><br></p>
+      <h3>Why This Model</h3>
       <p>The Dirichlet-Multinomial model was chosen over a flat hand-by-hand Bayesian network for two reasons. First, it is computationally tractable in the browser. Second, grouping hands into categories captures the actual structure of how poker players think about ranges. Nobody constructs a prior over all 169 hands independently. They think in categories.</p>
-      <p>The Monte Carlo approach to equity was chosen over combinatorial enumeration<sup class="footnote-ref"><a href="#fn4">4</a></sup> because it handles arbitrary board states and blockers cleanly without case analysis. At 10,000 samples it runs in under a second in JavaScript.</p>
+      <p>The Monte Carlo approach to equity was chosen over combinatorial enumeration because it handles arbitrary board states and blockers cleanly without case analysis. At 10,000 samples it runs in under a second in JavaScript.</p>
       <p>The independence assumption across actions is the main limitation. Correlated action sequences like a limp-reraise carry more information than the product of individual likelihoods suggests. A hidden Markov model over betting sequences would handle this better but would be significantly more complex to implement and explain.</p>
 
-      <h3 class="writeup-section-header">Results</h3>
+      <h2>Results</h2>
       <p>What I notice first in the app: the hand matrix collapsing as you log opponent actions, equity shifting once the range is updated instead of assuming a random hand, and the Train report after 100+ hands with your logistic regression coefficients.</p>
       <p>In testing, KQo against an opponent who open-raises from early position and then 3-bets drops from 58% equity (random opponent) to 34% (posterior range). A call that felt fine becomes a fold. The update is not a small tweak. In polarized spots it flips the decision.</p>
 
-      <h3 class="writeup-section-header">Discussion and Future Work</h3>
+      <h2>Discussion and Future Work</h2>
       <p>The prior is population-level. It reflects how an average GTO-informed player constructs ranges, not how any specific opponent does. If you have logged enough hands on one player, the next step is to estimate a personalized α vector from their actions.</p>
       <p>Train mode uses 100+ samples per session. That is enough to spot big leaks but not enough for tight coefficient confidence intervals without more data.</p>
       <p>The independence assumption across actions will produce miscalibrated posteriors in some spots. A sequential model over betting actions (each street as a Markov state) would handle that better but is harder to build and explain.</p>
       <p>Without a labeled dataset of real hands with known showdowns, it is hard to measure false positive rate precisely. In testing the posteriors match intuition (a 3-bet from early position really does collapse to premiums), but intuition is not a confidence interval. Logging hand histories with showdown data would be the way to check accuracy properly.</p>
 
-      <h3 class="writeup-section-header">Usage of Generative AI</h3>
+      <h2>Usage of Generative AI</h2>
       <p>I used Claude to help architect the initial structure of the Bayesian update engine and to write a first draft of the gradient descent implementation. I verified, tested, and modified both substantially. The likelihood table values, the hand category structure, and the logistic regression interpretation are my own. The mathematical derivations in this write-up are mine.</p>
 
-      <h3 class="writeup-section-header">References</h3>
-      <div class="writeup-references">
-        <p class="reference-item">Piech, C. Probability for Computer Scientists: CS109 Course Reader. Stanford University, 2023.</p>
-        <p class="reference-item">GTOWizard. Range construction and GTO open-raising frequencies. gtowizard.com</p>
-        <p class="reference-item">PioSOLVER. GTO poker solver, frequency data. piosolver.com</p>
-        <p class="reference-item">Koller, D. and Friedman, N. Probabilistic Graphical Models. MIT Press, 2009.</p>
-      </div>
-
-      <div class="writeup-footnotes">
-        <p id="fn1"><sup>1</sup> This assumption is wrong in the strict sense. A 3-bet after a limp is not the same as a cold 3-bet, and the action sequences are correlated. It is wrong in a way that is tractable, which is a different thing.</p>
-        <p id="fn2"><sup>2</sup> These values come from GTOWizard solver data and my own experience playing live poker. I reserve the right to be wrong about both.</p>
-        <p id="fn3"><sup>3</sup> The logistic regression stabilizes meaningfully at 100+ hands. Coefficients reported here reflect sessions of that length. Five hands is sufficient to demonstrate the pipeline in a demo context but not to draw strong conclusions about any individual player's tendencies.</p>
-        <p id="fn4"><sup>4</sup> Combinatorial enumeration of all possible runouts is feasible for simple cases but becomes expensive with multiple board cards remaining and blockers to track. Monte Carlo sidesteps this entirely and is accurate enough at n=10,000.</p>
+      <h2>References</h2>
+      <p class="reference-item">Piech, C. Probability for Computer Scientists: CS109 Course Reader. Stanford University, 2023.</p>
+      <p class="reference-item">GTOWizard. Range construction and GTO open-raising frequencies. gtowizard.com</p>
+      <p class="reference-item">PioSOLVER. GTO poker solver, frequency data. piosolver.com</p>
+      <p class="reference-item">Koller, D. and Friedman, N. Probabilistic Graphical Models. MIT Press, 2009.</p>
       </div>
     </div>
   </div>
@@ -4036,73 +4054,111 @@ function showReport(){
     'β_equity: <span class="accent">' + coefs[0].toFixed(2) + '</span>';
 }
 
-// CS109 write-up modal
-function downloadWriteup(){
-  const body = document.getElementById('writeup-details');
-  if (!body) return;
-  const clone = body.cloneNode(true);
-  clone.querySelector('.writeup-title-main')?.remove();
-  clone.querySelector('.writeup-author')?.remove();
-  const content = clone.innerHTML;
-  const win = window.open('', '_blank');
-  if (!win) return;
-  win.document.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><title>The Read: CS109 Write-up</title><style>' +
-    '*{box-sizing:border-box;margin:0;padding:0}' +
-    'body{font-family:Inter,system-ui,sans-serif;font-size:12pt;line-height:1.5;color:#111;background:#fff;padding:48px 64px;max-width:800px;margin:0 auto}' +
-    'h1,h2,h3,h4{font-family:Georgia,serif;color:#111;margin:24px 0 12px}' +
-    'h1{font-size:20pt}' +
-    'h2{font-size:14pt;border-bottom:1px solid #ddd;padding-bottom:6px}' +
-    'h3{font-size:12pt;font-style:italic}' +
-    'h4{font-size:11pt;font-weight:600;font-style:normal;margin-top:18px}' +
-    'p{margin-bottom:14px}' +
-    'a{color:#111;text-decoration:underline}' +
-    'table,.writeup-table{width:100%;border-collapse:collapse;margin:20px 0;font-size:10pt}' +
-    'th,.writeup-table th{background:#f5f5f5;border:1px solid #ccc;padding:8px 10px;text-align:left;font-weight:600;text-transform:uppercase;font-size:9pt;letter-spacing:.05em}' +
-    'td,.writeup-table td{border:1px solid #ddd;padding:7px 10px;text-align:right}' +
-    'td:first-child,.writeup-table td:first-child{text-align:left}' +
-    'tr:nth-child(even) td,.writeup-table tbody tr:nth-child(even) td{background:#fafafa}' +
-    'pre,.writeup-code,code{font-family:"Courier New",monospace;font-size:9pt;background:#f8f8f8;border:1px solid #e0e0e0;border-radius:4px;padding:12px 16px;display:block;margin:16px 0;white-space:pre-wrap;color:#333}' +
-    '.math{display:block;background:#f8f8f8;border-left:3px solid #ccc;padding:12px 16px;margin:14px 0;font-size:11pt}' +
-    '.writeup-code-caption,.writeup-table-caption,.writeup-fig-caption{font-size:9pt;color:#666;font-style:italic;margin:8px 0 16px;line-height:1.5}' +
-    '.writeup-fig-caption{text-align:center}' +
-    '.writeup-fig{border:1px solid #ddd;border-radius:6px;padding:16px;margin:20px 0;background:#fff;page-break-inside:avoid}' +
-    '.writeup-fig-bars{display:grid;grid-template-columns:repeat(8,1fr);gap:4px;align-items:end;height:120px;margin-bottom:8px}' +
-    '.writeup-fig-col{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;gap:4px}' +
-    '.writeup-fig-bar-group{display:flex;gap:2px;align-items:flex-end;height:80px}' +
-    '.writeup-fig-bar{width:7px;border-radius:2px 2px 0 0;min-height:2px}' +
-    '.writeup-fig-bar.prior{background:#999}' +
-    '.writeup-fig-bar.post{background:#2563eb}' +
-    '.writeup-fig-label{font-size:8pt;color:#666;text-align:center}' +
-    '.writeup-fig-legend{display:flex;gap:16px;justify-content:center;font-size:9pt;color:#666;margin-top:8px}' +
-    '.writeup-fig-legend i{display:inline-block;width:10px;height:10px;border-radius:2px;background:#999;margin-right:4px}' +
-    '.writeup-fig-ci{padding:12px 0;text-align:center}' +
-    '.writeup-fig-ci-bar{position:relative;height:8px;width:280px;max-width:100%;margin:0 auto;background:#ddd;border-radius:4px}' +
-    '.writeup-fig-ci-range{position:absolute;left:18%;width:64%;height:100%;background:#dbeafe;border:1px solid #2563eb;border-radius:4px}' +
-    '.writeup-fig-ci-point{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:10px;height:10px;background:#2563eb;border-radius:50%;border:2px solid #fff}' +
-    '.writeup-fig-ci-labels{display:flex;justify-content:space-between;width:280px;max-width:100%;margin:8px auto 0;font-size:9pt;color:#666}' +
-    '.writeup-callout,.callout{border:1px solid #c9a84c;border-radius:4px;padding:14px 18px;background:#fffdf5;margin:16px 0;font-size:11pt;page-break-inside:avoid}' +
-    '.writeup-footnotes,.footnotes{margin-top:40px;padding-top:16px;border-top:1px solid #ddd;font-size:9pt;color:#555;line-height:1.6}' +
-    '.writeup-footnotes p{margin-bottom:10px}' +
-    'ul.references{list-style:none;padding:0;margin:12px 0}' +
-    'ul.references li{margin-bottom:8px;font-size:10pt}' +
-    'sup{font-size:8pt}' +
-    'sup.footnote-ref a{color:inherit;text-decoration:none}' +
-    '.writeup-paper-title{font-size:20pt;font-weight:600;color:#111;margin-bottom:8px;font-family:Inter,system-ui,sans-serif;letter-spacing:-.02em}' +
-    '.writeup-paper-author{font-size:11pt;color:#444;margin-bottom:4px}' +
-    '.writeup-paper-meta{font-size:10pt;color:#666}' +
-    '.writeup-paper-header{text-align:center;margin-bottom:32px;padding-bottom:24px;border-bottom:1px solid #ddd}' +
-    '.equation{display:block;background:#f8f8f8;border-left:3px solid #c9a84c;padding:12px 16px;margin:14px 0;font-size:11pt;text-align:left;color:#111}' +
-    '@media print{body{padding:24px 32px}button{display:none}}' +
-    '</style></head><body>' +
-    content +
-    '<' + 'script>window.onload=function(){setTimeout(function(){window.print()},800)}<' + '/script>' +
-    '</body></html>');
-  win.document.close();
+// CS109 write-up — Robot Club paper format; PDF export
+const WRITEUP_PDF_CSS = `
+  .writeup-content, .writeup-content * { box-sizing: border-box; }
+  .writeup-content {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 12pt;
+    line-height: 1.7;
+    color: #111;
+    background: #fff;
+    width: 680px;
+    padding: 48px;
+  }
+  .writeup-content h1 { font-size: 18pt; font-weight: bold; text-align: center; margin-bottom: 4px; color: #111; }
+  .writeup-content .author { text-align: center; font-size: 11pt; margin-bottom: 2px; color: #111; }
+  .writeup-content .date { text-align: center; font-size: 11pt; margin-bottom: 12px; color: #111; }
+  .writeup-content .site-link { text-align: center; font-size: 11pt; margin-bottom: 28px; color: #111; }
+  .writeup-content .site-link a { color: #111; text-decoration: none; }
+  .writeup-content h2, .writeup-content h3, .writeup-content pre,
+  .writeup-content .pdf-block, .writeup-content .chart-container,
+  .writeup-content table, .writeup-content .equation,
+  .writeup-content .callout, .writeup-content p:not(.pdf-spacer) {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+  .writeup-content h2 { break-after: avoid !important; page-break-after: avoid !important; }
+  .writeup-content h2 + p, .writeup-content h3 + p {
+    break-before: avoid !important;
+    page-break-before: avoid !important;
+  }
+  .writeup-content h2 { font-size: 12pt; font-weight: bold; margin: 24px 0 10px; color: #111; }
+  .writeup-content h3 { font-size: 12pt; font-weight: bold; margin: 20px 0 8px; color: #111; }
+  .writeup-content p { margin-bottom: 12px; font-size: 12pt; color: #111; }
+  .writeup-content .equation { text-align: center; font-family: 'Courier New', monospace; font-size: 11pt; margin: 16px 0; color: #111; }
+  .writeup-content pre { font-family: 'Courier New', monospace; font-size: 9pt; background: #f5f5f5; border: 1px solid #ddd; padding: 12px 16px; margin: 16px 0; white-space: pre-wrap; color: #333; }
+  .writeup-content table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 10pt; }
+  .writeup-content th { background: #f0f0f0; border: 1px solid #ccc; padding: 7px 10px; text-align: left; font-weight: bold; }
+  .writeup-content td { border: 1px solid #ccc; padding: 6px 10px; color: #111; text-align: right; }
+  .writeup-content td:first-child, .writeup-content th:first-child { text-align: left; }
+  .writeup-content tr:nth-child(even) td { background: #fafafa; }
+  .writeup-content .figure-caption { font-size: 10pt; color: #444; font-style: italic; text-align: center; margin-top: 6px; }
+  .writeup-content .chart-container { border: 1px solid #ddd; padding: 16px; margin: 20px 0; background: #fff; }
+  .writeup-content .pdf-spacer { margin: 0; padding: 0; line-height: 1.7; font-size: 12pt; }
+  .writeup-content .reference-item { padding-left: 24px; text-indent: -24px; font-size: 10.5pt; margin-bottom: 8px; line-height: 1.6; color: #333; }
+  .writeup-content .callout { border: 1px solid #ccc; padding: 12px 16px; background: #fafafa; margin: 16px 0; font-style: italic; color: #333; }
+  .writeup-content .code-caption { font-size: 10pt; color: #444; font-style: italic; margin: 0 0 12px; }
+  .writeup-content .fig-bars { display: grid; grid-template-columns: repeat(8, 1fr); gap: 6px; align-items: end; height: 140px; margin-bottom: 8px; }
+  .writeup-content .fig-col { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; gap: 4px; }
+  .writeup-content .fig-bar-group { display: flex; gap: 2px; align-items: flex-end; height: 100px; justify-content: center; }
+  .writeup-content .fig-bar { width: 8px; border-radius: 2px 2px 0 0; min-height: 2px; }
+  .writeup-content .fig-bar.prior { background: #888; }
+  .writeup-content .fig-bar.post { background: #2563eb; }
+  .writeup-content .fig-label { font-size: 8pt; color: #666; text-align: center; }
+  .writeup-content .fig-legend { display: flex; gap: 16px; justify-content: center; font-size: 10pt; color: #666; margin-top: 8px; }
+  .writeup-content .fig-legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; }
+  .writeup-content .fig-ci { padding: 12px 0; text-align: center; }
+  .writeup-content .fig-ci-bar { position: relative; height: 8px; width: 280px; margin: 0 auto; background: #ddd; border-radius: 4px; }
+  .writeup-content .fig-ci-range { position: absolute; left: 18%; width: 64%; height: 100%; background: #dbeafe; border: 1px solid #2563eb; border-radius: 4px; }
+  .writeup-content .fig-ci-point { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 12px; height: 12px; background: #2563eb; border-radius: 50%; border: 2px solid #fff; }
+  .writeup-content .fig-ci-labels { display: flex; justify-content: space-between; width: 280px; margin: 8px auto 0; font-size: 10pt; color: #666; }
+  .writeup-content .pdf-block pre { margin-top: 0; }
+  .writeup-content .pdf-block .equation { margin-bottom: 8px; }
+  .writeup-content .pdf-block .code-caption { margin-top: 0; }
+`;
+
+function loadHtml2Pdf(){
+  return new Promise((resolve, reject) => {
+    if (window.html2pdf) { resolve(window.html2pdf); return; }
+    const s = document.createElement('script');
+    s.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js';
+    s.onload = () => resolve(window.html2pdf);
+    s.onerror = () => reject(new Error('Could not load PDF library'));
+    document.head.appendChild(s);
+  });
 }
 
-document.getElementById('cs109-btn').addEventListener('click', () => {
-  document.getElementById('writeup-backdrop').classList.add('open');
-});
+function downloadWriteup(){
+  const src = document.querySelector('#writeup-details .writeup-content');
+  if (!src) return;
+
+  const wrap = document.createElement('div');
+  wrap.style.cssText = 'position:fixed;left:-9999px;top:0;width:776px;background:#fff;';
+  wrap.innerHTML = '<style>' + WRITEUP_PDF_CSS + '</style>' + src.outerHTML;
+  document.body.appendChild(wrap);
+  const target = wrap.querySelector('.writeup-content');
+
+  loadHtml2Pdf().then(() => {
+    return html2pdf().set({
+      margin: [0.55, 0.65, 0.55, 0.65],
+      filename: 'the-read-cs109-writeup.pdf',
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2, useCORS: true, logging: false },
+      jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
+      pagebreak: {
+        mode: ['css', 'legacy'],
+        avoid: ['h2', 'h3', 'p', 'pre', '.pdf-block', '.chart-container', 'table', '.equation', '.callout']
+      }
+    }).from(target).save();
+  }).catch(() => {
+    alert('Could not generate PDF. Check your connection and try again.');
+  }).finally(() => {
+    wrap.remove();
+  });
+}
+
+document.getElementById('cs109-btn').addEventListener('click', downloadWriteup);
 document.getElementById('writeup-close').addEventListener('click', () => {
   document.getElementById('writeup-backdrop').classList.remove('open');
 });
